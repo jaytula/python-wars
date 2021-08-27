@@ -1,7 +1,7 @@
 import re
 
 def validate_pin(pin: str):
-    return re.match(r'^(\d{4}|\d{6})$', pin) != None
+    return re.fullmatch(r'^(\d{4}|\d{6})$', pin) != None
 
 import codewars_test as test
 
@@ -9,6 +9,7 @@ import codewars_test as test
 def fixed_tests():
     @test.it("should return False for pins with length other than 4 or 6")
     def basic_test_cases():    
+        test.assert_equals(validate_pin("1234 \n"),False, "Wrong output for '1'")
         test.assert_equals(validate_pin("1"),False, "Wrong output for '1'")
         test.assert_equals(validate_pin("12"),False, "Wrong output for '12'")
         test.assert_equals(validate_pin("123"),False, "Wrong output for '123'")
